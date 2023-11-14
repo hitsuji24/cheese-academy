@@ -1,0 +1,461 @@
+/* ここから下に記載していく */
+/* やりたいこと
+テキストにフォーカス入らないようにしたい→Chromeの仕様？Edgeでは起こらなかった
+ファビコン
+ポインタ
+ナビが表示中のところフォーカス
+ */
+
+/* 全体的な疑問
+色々サンプルコード見る中でテキストに対してh1とかpとか使わずDivのクラス分けで対応しているところが多かった。
+あまりhとかpとか使わない？
+あとクラス名がついている中のpとかaとかってクラス名つけなくても親要素のクラス名で指名すればよさそうなもんだけど、
+すごい小さい要素にまでクラス名をつけているのはなぜ？
+*/
+
+html {
+    font-size: 100%;
+    /*ユーザー設定の文字サイズを正しく反映*/
+}
+
+* {
+    box-sizing: border-box;
+    /*余白や線を幅や高さに含める*/
+}
+
+img {
+    max-width: 100%;
+    /*画像が親要素からはみ出すのを防ぐ*/
+    height: auto;
+}
+
+.pagetop {
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    right: 200px;
+}
+
+.pagetop a {
+    display: block;
+    background-color: #cc8315;
+    text-align: center;
+    color:antiquewhite;
+    font-size: 24px;
+    text-decoration: none;
+    padding: 10px;
+    filter: alpha(opacity=50);
+    -moz-opacity: 0.5;
+    opacity: 0.5;
+}
+
+.pagetop a:hover {
+    display: block;
+    background-color: #8f1a1a;
+    text-align: center;
+    color: #fff;
+    font-size: 12px;
+    text-decoration: none;
+    padding: 5px 10px;
+    filter: alpha(opacity=50);
+    -moz-opacity: 0.5;
+    opacity: 0.5;
+}
+
+body {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    background-color: #fff;
+    font-family: "Helvetica Neue",
+        Arial,
+        "Hiragino Kaku Gothic ProN",
+        "Hiragino Sans",
+        Meiryo,
+        sans-serif;
+}
+
+.navigation {
+    position: sticky;
+    /* 【疑問】追従するようにしたいが反映されない 
+    headerからmainに移すと追従するがレイヤー最下層にいる感じ*/
+    position: -webkit-sticky;
+    /*Safari用ベンダープレフィックス*/
+    top: 0;
+    /*ブラウザの上からの距離はゼロ*/
+    width: 100%;
+    font-size: 21px;
+    
+    padding: 0 2%;
+    display: flex;
+    /*ロゴとulを横に並べる*/
+    justify-content: space-between;
+    /*両端に配置*/
+    align-items: center;
+    /*要素を垂直中央に揃える*/
+background-color: #ffffff;
+}
+
+.navigation ul {
+    display: flex;
+    list-style: none;
+}
+
+.navigation nav {
+    margin: 50px 0px;
+
+}
+
+.navigation li {
+    margin-left: 50px;
+}
+
+.navigation a {
+    text-decoration: none;
+    color: #333;
+}
+
+.top {
+    position: relative;
+    /* 【疑問】なんでサイズ指定しないといけないのか？Bodyのサイズに倣ってくれないか？ */
+    width: 1200px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../img/top_cheeseontable_clip.jpg);
+    background-size: 100% 100%;
+}
+
+
+
+.top-messege h1 {
+    font-weight: 700;
+    color: #f8f8f8;
+    font-size: 50px;
+    padding-bottom: 16px;
+}
+
+.top-messege h2 {
+    font-weight: 700;
+    color: #f8f8f8;
+    font-size: 40px;
+}
+
+.title h3 {
+    position: relative;
+    width: fit-content;
+    font-size: 24px;
+    color: #c96e02aa;
+}
+
+.title h4 {
+    position: relative;
+    width: fit-content;
+    font-size: 18px;
+    color: #000000;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 30px;
+    padding: 60px 0px;
+    position: relative;
+}
+
+.paragraph p {
+    font-size: 16px;
+    gap: 40px;
+    /* 【あとで】行間整えたい */
+}
+
+.paragraph {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    position: relative;
+    margin: 0 0 40px 0;
+}
+
+.gallery{
+    width: 100%;
+    display:flex;
+    justify-content: space-around;
+}
+
+.zigzag ul {
+    max-width: 1200px;
+}
+
+.zigzag li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0px;
+}
+
+.zigzag .photo {
+    width: 50%;
+}
+
+.zigzag .photo img {
+    /* これでimgの下の隙間がなくなった */
+    width: 100%;
+    /* 画像の幅を親要素に合わせる */
+    height: auto;
+    /* 高さを自動調整し、アスペクト比を維持する */
+    display: block;
+    /* 画像をブロック要素として表示 */
+    margin: 0;
+    /* マージンをリセット */
+    padding: 0;
+    /* パディングをリセット */
+    object-fit: cover;
+    /* 必要に応じてobject-fitを設定 */
+}
+
+.zigzag .txt {
+    width: 480px;
+}
+
+.txt h4 {
+    position: relative;
+    width: fit-content;
+    font-size: 18px;
+    color: #000000;
+    margin: 0 0 40px 0;
+}
+
+/* 奇数の行に対して指定 */
+.zigzag li:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+
+.zigzag ul li:nth-child(even) .txt {
+    padding-right: 50px;
+}
+
+.zigzag ul li:nth-child(odd) .txt {
+    padding-left: 50px;
+}
+
+.card {
+    width: 300px;
+    height: auto;
+}
+
+.card-wrap {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    /*【備忘録】 iframe入れたら無効になった 
+    →space-betweenが原因だった Centerにした。*/
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 14px rgba(50, 50, 93, .1), 0 3px 6px rgba(0, 0, 0, .08);
+    transition: all .5s;
+
+}
+
+.card__imgframe {
+    width: 100%;
+    height: auto;
+    padding-top: 56.25%;
+    background: url(../img/news_img.jpg) no-repeat center;
+    background-size: cover;
+}
+
+.card__textbox {
+    width: 100%;
+    height: auto;
+    padding: 20px 18px;
+    background: #ffffff;
+    box-sizing: border-box;
+}
+
+.card__titletext {
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 125%;
+    margin-bottom: 8px;
+}
+
+.card__overviewtext {
+    font-size: 16px;
+    line-height: 150%;
+}
+
+.card-skin {
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, .2);
+}
+
+.button-morenews a,
+.button-submit a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.buttonOutlineGradient {
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    height: 56px;
+    margin: 0 auto;
+    /*中央寄せ*/
+    padding: 2px;
+    overflow-wrap: anywhere;
+    background: linear-gradient(135deg, #8f1a1a, #cc8315);
+    border-radius: 28px;
+    /* (buttonの高さ / 2) の値 */
+    margin-top: 30px;
+    margin-bottom: 60px;
+}
+
+.buttonOutlineGradient::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    content: "";
+    background: linear-gradient(135deg, #8f1a1a, #cc8315);
+    filter: blur(8px);
+    border-radius: 32px;
+    /* (buttonの高さ / 2) の値 */
+    opacity: 0;
+}
+
+.buttonOutlineGradient_item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    width: 100%;
+    height: 100%;
+    color: #cc8315;
+    background-color: #ffffff;
+    border-radius: 32px;
+    /* (buttonの高さ / 2) の値 */
+}
+
+@media (any-hover: hover) {
+    .buttonOutlineGradient::before {
+        transition: opacity 0.2s;
+        will-change: filter;
+    }
+
+    .buttonOutlineGradient:hover::before {
+        opacity: 1;
+    }
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    margin: 40px 0;
+}
+
+.info td {
+    padding: 10px 25px;
+}
+
+.contact-form {
+    width: 960px;
+    /*横幅*/
+    margin: 0 auto;
+    /*中央寄せ*/
+}
+
+.contact-table {
+    width: 100%;
+}
+
+.contact-item,
+.contact-body {
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+.contact-item {
+    text-align: left;
+    /* テキスト左寄せ */
+    vertical-align: middle;
+    /* 上下中央 */
+    width: 40%;
+    /* 横幅%指定（項目の背景色部分） */
+    background-color: #cc8315;
+    /* 項目の背景色 */
+    color: antiquewhite;
+}
+
+.contact-body {
+    width: 70%;
+    /* 横幅70%指定（白背景色部分） */
+}
+
+.button-submit input[type="submit"] {
+    border: none;
+    /* 黒線をなくす */
+}
+
+
+
+.form-text {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    max-width: 400px;
+}
+
+.form-select {
+    width: 100%;
+    /* セレクトボックスの幅を調整 */
+    /* 【疑問】form-textと同じwidth100%にしてるのに横幅揃わないのはなぜ？ */
+    padding: 10px;
+    /* パディングを追加 */
+    border-radius: 5px;
+    /* 角の丸みを追加 */
+    border: 1px solid #ccc;
+    /* 境界線のスタイル */
+}
+
+.form-textarea {
+    width: 100%;
+    /* セレクトボックスの幅を調整 */
+    /* 【疑問】form-textと同じwidth100%にしてるのに横幅揃わないのはなぜ？ */
+    padding: 10px;
+    /* パディングを追加 */
+    border-radius: 5px;
+    /* 角の丸みを追加 */
+    border: 1px solid #ccc;
+    /* 境界線のスタイル */
+}
+
+footer {
+    font-size: 14px;
+    background-color: #cc8315;
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 140px;
+    color: antiquewhite;
+}
