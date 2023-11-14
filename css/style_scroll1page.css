@@ -65,7 +65,7 @@
     position: relative;
     width: 100%;
     min-height: 100vh;
-    background: url(../img/top_cheeseontable.jpg) center / cover;
+    background: url(../img/top_cheeseontable_clip.jpg) center / cover;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -85,10 +85,21 @@
     font-size: 40px;
 }
 
+#box1 {
+    background-size: cover;
+    animation: img_anime 16s ease infinite;
+}
+
+.group-about {
+    background-color: rgba(250, 235, 215, 0.7);
+    padding: 60px 80px;
+}
+
 .title h3 {
     position: relative;
     width: fit-content;
     font-size: 24px;
+    font-weight: bold;
     color: #c96e02aa;
 }
 
@@ -96,6 +107,7 @@
     position: relative;
     width: fit-content;
     font-size: 18px;
+    font-weight: bold;
     color: #000000;
 }
 
@@ -104,15 +116,15 @@
     flex-direction: column;
     width: 100%;
     align-items: center;
-    gap: 30px;
-    padding: 60px 0px;
+    gap: 20px;
+    padding: 30px 0px;
     position: relative;
 }
 
 .paragraph p {
     font-size: 16px;
     gap: 40px;
-    /* 【あとで】行間整えたい */
+    line-height: normal;
 }
 
 .paragraph {
@@ -126,12 +138,7 @@
     margin: 0 0 40px 0;
 }
 
-#box1 {
-    justify-content: center;
-    align-items: center;
-    background-size: cover;
-    animation: img_anime 16s ease infinite;
-}
+
 
 @keyframes img_anime {
     0% {
@@ -155,6 +162,15 @@
     }
 }
 
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.group-course{
+    max-width: 1200px;
+}
 .zigzag ul {
     max-width: 100%;
 }
@@ -186,15 +202,18 @@
 }
 
 .zigzag .txt {
-    width: 480px;
+    width: 50%;
 }
 
+.zigzag p{
+    font-size: 14px;
+}
 .txt h4 {
     position: relative;
     width: fit-content;
-    font-size: 18px;
-    color: #000000;
-    margin: 0 0 40px 0;
+    font-size: 16px;
+    color: #cc8315;
+    margin: 0 0 16px 0;
 }
 
 /* 奇数の行に対して指定 */
@@ -218,10 +237,9 @@
 
 .card-wrap {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 30px;
-    /*【疑問】 iframe入れたら無効になった */
 }
 
 .card:hover {
@@ -334,7 +352,7 @@
     flex-direction: column;
     width: 100%;
     align-items: center;
-    margin: 40px 0;
+    margin: 40px 0 20px 0;
 }
 
 .info td {
@@ -352,12 +370,15 @@
 
 .contact-table {
     width: 100%;
+    border-collapse: collapse;
+
 }
 
 .contact-item,
 .contact-body {
-    padding: 20px;
-    border: 1px solid #ccc;
+    padding: 8px 20px;
+    border-bottom: 1px solid #cc8315;
+
 }
 
 .contact-item {
@@ -367,9 +388,6 @@
     /* 上下中央 */
     width: 40%;
     /* 横幅%指定（項目の背景色部分） */
-    background-color: #cc8315;
-    /* 項目の背景色 */
-    color: antiquewhite;
 }
 
 .contact-body {
@@ -377,45 +395,35 @@
     /* 横幅70%指定（白背景色部分） */
 }
 
+.form-text,
+.form-textarea {
+    width: 80%;
+    background-color: #f2f4f5;
+    border: none;
+    border-radius: 3px;
+    padding: 8px 20px;
+    font-size: 16px;
+    color: #333;
+    flex-grow: 1;
+}
+
+.form-select {
+    width: 87.5%;
+    /* 【疑問】なんで他インプットエリアの100％と揃わないんだ */
+    background-color: #f2f4f5;
+    border: none;
+    border-radius: 3px;
+    padding: 15px 20px;
+    font-size: 16px;
+    color: #333;
+}
+
 .button-submit input[type="submit"] {
     border: none;
     /* 黒線をなくす */
 }
 
-.form-text {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    max-width: 400px;
-}
 
-.form-select {
-    width: 100%;
-    /* セレクトボックスの幅を調整 */
-    /* 【疑問】form-textと同じwidth100%にしてるのに横幅揃わないのはなぜ？ */
-    padding: 10px;
-    /* パディングを追加 */
-    border-radius: 5px;
-    /* 角の丸みを追加 */
-    border: 1px solid #ccc;
-    /* 境界線のスタイル */
-}
-
-.form-textarea {
-    width: 100%;
-    /* セレクトボックスの幅を調整 */
-    /* 【疑問】form-textと同じwidth100%にしてるのに横幅揃わないのはなぜ？ */
-    padding: 10px;
-    /* パディングを追加 */
-    border-radius: 5px;
-    /* 角の丸みを追加 */
-    border: 1px solid #ccc;
-    /* 境界線のスタイル */
-}
 
 footer {
     font-size: 14px;
@@ -423,4 +431,4 @@ footer {
     text-align: center;
     color: antiquewhite;
     padding: 20px 0;
-} 
+}

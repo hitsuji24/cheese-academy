@@ -1,9 +1,7 @@
 /* ここから下に記載していく */
 /* やりたいこと
 テキストにフォーカス入らないようにしたい→Chromeの仕様？Edgeでは起こらなかった
-ファビコン
-ポインタ
-ナビが表示中のところフォーカス
+ナビが表示中のところフォーカス(そもそも追従しない…）
  */
 
 /* 全体的な疑問
@@ -11,6 +9,7 @@
 あまりhとかpとか使わない？
 あとクラス名がついている中のpとかaとかってクラス名つけなくても親要素のクラス名で指名すればよさそうなもんだけど、
 すごい小さい要素にまでクラス名をつけているのはなぜ？
+メモ：idとclassの使い分け意識すればもっとcss短くできたかも
 */
 
 html {
@@ -40,7 +39,8 @@ img {
     display: block;
     background-color: #cc8315;
     text-align: center;
-    color:antiquewhite;
+    color: antiquewhite;
+    border-radius: 30px;
     font-size: 24px;
     text-decoration: none;
     padding: 10px;
@@ -54,9 +54,10 @@ img {
     background-color: #8f1a1a;
     text-align: center;
     color: #fff;
-    font-size: 12px;
+    border-radius: 30px;
+    font-size: 24px;
     text-decoration: none;
-    padding: 5px 10px;
+    padding: 10px;
     filter: alpha(opacity=50);
     -moz-opacity: 0.5;
     opacity: 0.5;
@@ -84,8 +85,8 @@ body {
     top: 0;
     /*ブラウザの上からの距離はゼロ*/
     width: 100%;
+    max-width: 1200px;
     font-size: 21px;
-    
     padding: 0 2%;
     display: flex;
     /*ロゴとulを横に並べる*/
@@ -93,7 +94,7 @@ body {
     /*両端に配置*/
     align-items: center;
     /*要素を垂直中央に揃える*/
-background-color: #ffffff;
+    background-color: #ffffff;
 }
 
 .navigation ul {
@@ -146,6 +147,7 @@ background-color: #ffffff;
     position: relative;
     width: fit-content;
     font-size: 24px;
+    font-weight: bold;
     color: #c96e02aa;
 }
 
@@ -153,6 +155,7 @@ background-color: #ffffff;
     position: relative;
     width: fit-content;
     font-size: 18px;
+    font-weight: bold;
     color: #000000;
 }
 
@@ -169,7 +172,7 @@ background-color: #ffffff;
 .paragraph p {
     font-size: 16px;
     gap: 40px;
-    /* 【あとで】行間整えたい */
+    line-height: normal;
 }
 
 .paragraph {
@@ -183,12 +186,21 @@ background-color: #ffffff;
     margin: 0 0 40px 0;
 }
 
-.gallery{
+.gallery {
+height: auto;
     width: 100%;
-    display:flex;
+    /* 【疑問】img全体でmax-width: 100%;設定してはみ出さないようにしているはずだがはみだしちゃう
+ */
+    max-width: 1200px;
+    display: flex;
     justify-content: space-around;
 }
 
+.gallery img{
+    width: 100%;
+    max-width: 100%; /* または親要素に合わせた適切な最大幅 */
+    height: auto; /* アスペクト比を維持 */ 
+}
 .zigzag ul {
     max-width: 1200px;
 }
@@ -389,7 +401,7 @@ background-color: #ffffff;
 .contact-item,
 .contact-body {
     padding: 20px;
-    border: 1px solid #ccc;
+    border-bottom: 1px solid #cc8315;
 }
 
 .contact-item {
@@ -399,9 +411,8 @@ background-color: #ffffff;
     /* 上下中央 */
     width: 40%;
     /* 横幅%指定（項目の背景色部分） */
-    background-color: #cc8315;
     /* 項目の背景色 */
-    color: antiquewhite;
+    color: black;
 }
 
 .contact-body {
@@ -416,40 +427,37 @@ background-color: #ffffff;
 
 
 
-.form-text {
+.form-text,
+.form-textarea {
     width: 100%;
     padding: 10px;
+    background-color: #f2f4f5;
+    border: none;
     border-radius: 5px;
     border: 1px solid #ccc;
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
     max-width: 400px;
+    color: #333;
+    flex-grow: 1;
 }
 
 .form-select {
-    width: 100%;
-    /* セレクトボックスの幅を調整 */
-    /* 【疑問】form-textと同じwidth100%にしてるのに横幅揃わないのはなぜ？ */
+    width: 75%;
+    /* 【疑問】なんで他インプットエリアの100％と揃わないんだ */
+    background-color: #f2f4f5;
+    border: none;
     padding: 10px;
     /* パディングを追加 */
     border-radius: 5px;
     /* 角の丸みを追加 */
     border: 1px solid #ccc;
     /* 境界線のスタイル */
+    color: #333;
 }
 
-.form-textarea {
-    width: 100%;
-    /* セレクトボックスの幅を調整 */
-    /* 【疑問】form-textと同じwidth100%にしてるのに横幅揃わないのはなぜ？ */
-    padding: 10px;
-    /* パディングを追加 */
-    border-radius: 5px;
-    /* 角の丸みを追加 */
-    border: 1px solid #ccc;
-    /* 境界線のスタイル */
-}
+
 
 footer {
     font-size: 14px;
